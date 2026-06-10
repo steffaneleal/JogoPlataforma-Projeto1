@@ -37,7 +37,6 @@ public class scriptWoody : MonoBehaviour
     void Update()
     {
         float x = Input.GetAxis("Horizontal");
-        rbd.velocity = new Vector2(x * vel, rbd.velocity.y);
 
         if (x == 0)
         {
@@ -46,6 +45,9 @@ public class scriptWoody : MonoBehaviour
         {
             anim.SetBool("movendo", true);
         }
+
+        rbd.velocity = new Vector2(x * vel, rbd.velocity.y);
+        // transform.Translate(transform.TransformDirection(new Vector2 (x * Time.deltaTime, 0)));
 
         if (Input.GetKeyDown(KeyCode.Space) && chao) {
             rbd.AddForce(new Vector2(0, pulo));
