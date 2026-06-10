@@ -7,6 +7,8 @@ public class scriptWoody : MonoBehaviour
     public LayerMask mascara;
     public GameObject pe;
     private Rigidbody2D rbd;
+
+    private Animator anim;
     public float vel;
     public float pulo;
     private bool chao;
@@ -18,6 +20,7 @@ public class scriptWoody : MonoBehaviour
         pulo = 600;
         vel = 5;
         rbd = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -35,6 +38,14 @@ public class scriptWoody : MonoBehaviour
     {
         float x = Input.GetAxis("Horizontal");
         rbd.velocity = new Vector2(x * vel, rbd.velocity.y);
+
+        if (x == 0)
+        {
+            anim.SetBool("movendo", false);
+        } else
+        {
+            anim.SetBool("movendo", true);
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) && chao) {
             rbd.AddForce(new Vector2(0, pulo));
